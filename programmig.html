@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Python Programming Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 50px;
+    }
+    .correct { color: green; }
+    .wrong { color: red; }
+    code { background-color: #f0f0f0; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>🧠 Python Programming Quiz</h1>
+
+<form id="quizForm">
+  <!-- Q1 -->
+  <p><strong>Clue:</strong> Print Hello World to the screen.</p>
+  <p><b>1. Write code to print "Hello, World!"</b></p>
+  <textarea id="q1"></textarea>
+  <p id="r1"></p>
+
+  <!-- Q2 -->
+  <p><strong>Clue:</strong> Use input() to accept a name from user and display greeting.</p>
+  <p><b>2. Ask user's name and print "Hello [name]"</b></p>
+  <textarea id="q2"></textarea>
+  <p id="r2"></p>
+
+  <!-- Q3 -->
+  <p><strong>Clue:</strong> Use a for loop to print numbers.</p>
+  <p><b>3. Print numbers from 1 to 5 using a for loop</b></p>
+  <textarea id="q3"></textarea>
+  <p id="r3"></p>
+
+  <!-- Q4 -->
+  <p><strong>Clue:</strong> Use if-else to check even or odd.</p>
+  <p><b>4. Check if a number is even or odd</b></p>
+  <textarea id="q4"></textarea>
+  <p id="r4"></p>
+
+  <!-- Q5 -->
+  <p><strong>Clue:</strong> Use while loop to repeat message 3 times.</p>
+  <p><b>5. Print "Welcome" 3 times using a while loop</b></p>
+  <textarea id="q5"></textarea>
+  <p id="r5"></p>
+
+  <!-- Q6 -->
+  <p><strong>Clue:</strong> Create a list and print each item.</p>
+  <p><b>6. Create a list of 3 fruits and print each fruit</b></p>
+  <textarea id="q6"></textarea>
+  <p id="r6"></p>
+
+  <!-- Q7 -->
+  <p><strong>Clue:</strong> Use a function to add 2 numbers.</p>
+  <p><b>7. Define a function to add two numbers and return the result</b></p>
+  <textarea id="q7"></textarea>
+  <p id="r7"></p>
+
+  <!-- Q8 -->
+  <p><strong>Clue:</strong> Dictionary contains key-value pairs.</p>
+  <p><b>8. Create a dictionary with name and age, and print both</b></p>
+  <textarea id="q8"></textarea>
+  <p id="r8"></p>
+
+  <!-- Q9 -->
+  <p><strong>Clue:</strong> Use slicing to get part of string.</p>
+  <p><b>9. Given name = "Swathi", print only "Swa"</b></p>
+  <textarea id="q9"></textarea>
+  <p id="r9"></p>
+
+  <!-- Q10 -->
+  <p><strong>Clue:</strong> Use try-except to handle error.</p>
+  <p><b>10. Write a program that divides 2 numbers and handles division by zero error</b></p>
+  <textarea id="q10"></textarea>
+  <p id="r10"></p>
+
+  <br>
+  <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+</form>
+
+<h2 id="score"></h2>
+
+<script>
+function checkAnswers() {
+  const answers = {
+    q1: 'print("Hello, World!")',
+    q2: 'name = input("Enter your name: ")\nprint("Hello", name)',
+    q3: 'for i in range(1, 6):\n    print(i)',
+    q4: 'num = int(input("Enter a number: "))\nif num % 2 == 0:\n    print("Even")\nelse:\n    print("Odd")',
+    q5: 'i = 0\nwhile i < 3:\n    print("Welcome")\n    i += 1',
+    q6: 'fruits = ["apple", "banana", "cherry"]\nfor fruit in fruits:\n    print(fruit)',
+    q7: 'def add(a, b):\n    return a + b',
+    q8: 'person = {"name": "John", "age": 25}\nprint(person["name"])\nprint(person["age"])',
+    q9: 'name = "Swathi"\nprint(name[:3])',
+    q10: 'try:\n    a = int(input())\n    b = int(input())\n    print(a/b)\nexcept ZeroDivisionError:\n    print("Cannot divide by zero")'
+  };
+
+  let score = 0;
+
+  for (let i = 1; i <= 10; i++) {
+    let userInput = document.getElementById("q" + i).value.trim();
+    let correct = answers["q" + i];
+    let result = document.getElementById("r" + i);
+
+    if (userInput.replace(/\s+/g, '') === correct.replace(/\s+/g, '')) {
+      result.innerHTML = "✅ Correct";
+      result.className = "correct";
+      score++;
+    } else {
+      result.innerHTML = `❌ Incorrect<br><b>Correct Answer:</b><br><code>${correct.replace(/\n/g, '<br>')}</code>`;
+      result.className = "wrong";
+    }
+  }
+
+  document.getElementById("score").innerHTML = `🏁 Total Score: ${score} / 10`;
+}
+</script>
+
+</body>
+</html>
