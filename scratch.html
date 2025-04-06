@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scratch Programming - Basic Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    .question { margin-bottom: 20px; }
+    .question h3 { margin-bottom: 10px; }
+    button { padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    #result { margin-top: 20px; font-weight: bold; }
+    .explanation { margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Scratch Programming - Basic Quiz (10 Marks)</h2>
+  <form id="quizForm">
+    <div class="question">
+      <h3>1. Which block is used to start a Scratch program?</h3>
+      <input type="radio" name="q1" value="a"> a) When green flag clicked<br>
+      <input type="radio" name="q1" value="b"> b) Forever<br>
+      <input type="radio" name="q1" value="c"> c) Move 10 steps<br>
+    </div>
+
+    <div class="question">
+      <h3>2. What does the "repeat" block do?</h3>
+      <input type="radio" name="q2" value="a"> a) Runs the script only once<br>
+      <input type="radio" name="q2" value="b"> b) Repeats actions a specific number of times<br>
+      <input type="radio" name="q2" value="c"> c) Makes the sprite disappear<br>
+    </div>
+
+    <div class="question">
+      <h3>3. Which block category changes the appearance of a sprite?</h3>
+      <input type="radio" name="q3" value="a"> a) Motion<br>
+      <input type="radio" name="q3" value="b"> b) Looks<br>
+      <input type="radio" name="q3" value="c"> c) Control<br>
+    </div>
+
+    <div class="question">
+      <h3>4. What is the purpose of the “forever” block?</h3>
+      <input type="radio" name="q4" value="a"> a) Repeats a script until a key is pressed<br>
+      <input type="radio" name="q4" value="b"> b) Repeats a script forever<br>
+      <input type="radio" name="q4" value="c"> c) Repeats a script 10 times<br>
+    </div>
+
+    <div class="question">
+      <h3>5. What type of block is “if then”?</h3>
+      <input type="radio" name="q5" value="a"> a) Sensing<br>
+      <input type="radio" name="q5" value="b"> b) Event<br>
+      <input type="radio" name="q5" value="c"> c) Control<br>
+    </div>
+
+    <div class="question">
+      <h3>6. Which block can detect if the sprite is touching another sprite?</h3>
+      <input type="radio" name="q6" value="a"> a) Touching color?<br>
+      <input type="radio" name="q6" value="b"> b) Touching?<br>
+      <input type="radio" name="q6" value="c"> c) Wait<br>
+    </div>
+
+    <div class="question">
+      <h3>7. Which of the following is an event block?</h3>
+      <input type="radio" name="q7" value="a"> a) When sprite clicked<br>
+      <input type="radio" name="q7" value="b"> b) Glide 1 sec<br>
+      <input type="radio" name="q7" value="c"> c) Say Hello<br>
+    </div>
+
+    <div class="question">
+      <h3>8. What does the “say” block do?</h3>
+      <input type="radio" name="q8" value="a"> a) Makes the sprite move<br>
+      <input type="radio" name="q8" value="b"> b) Makes the sprite speak (display message)<br>
+      <input type="radio" name="q8" value="c"> c) Makes the sprite disappear<br>
+    </div>
+
+    <div class="question">
+      <h3>9. Which block is used to move a sprite?</h3>
+      <input type="radio" name="q9" value="a"> a) Move 10 steps<br>
+      <input type="radio" name="q9" value="b"> b) Change color<br>
+      <input type="radio" name="q9" value="c"> c) Set size<br>
+    </div>
+
+    <div class="question">
+      <h3>10. What is the function of “wait 1 second” block?</h3>
+      <input type="radio" name="q10" value="a"> a) Pauses the script<br>
+      <input type="radio" name="q10" value="b"> b) Deletes the sprite<br>
+      <input type="radio" name="q10" value="c"> c) Changes background<br>
+    </div>
+
+    <button type="button" onclick="checkAnswers()">Submit</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: "a",
+        q2: "b",
+        q3: "b",
+        q4: "b",
+        q5: "c",
+        q6: "b",
+        q7: "a",
+        q8: "b",
+        q9: "a",
+        q10: "a"
+      };
+
+      const explanations = {
+        q1: "Correct! 'When green flag clicked' starts the program.",
+        q2: "Correct! The 'repeat' block loops actions a fixed number of times.",
+        q3: "Correct! 'Looks' blocks change how the sprite appears.",
+        q4: "Correct! The 'forever' block repeats actions endlessly.",
+        q5: "Correct! 'If then' is a control block for decision making.",
+        q6: "Correct! 'Touching?' detects contact with another sprite.",
+        q7: "Correct! 'When sprite clicked' is an event block.",
+        q8: "Correct! The 'say' block displays speech bubble messages.",
+        q9: "Correct! 'Move 10 steps' moves the sprite forward.",
+        q10: "Correct! 'Wait 1 second' pauses the script for 1 second."
+      };
+
+      let score = 0;
+      let resultHTML = "";
+
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected) {
+          if (selected.value === answers[key]) {
+            score++;
+            resultHTML += `<p>Q${key[1]}: ✅ ${explanations[key]}</p>`;
+          } else {
+            resultHTML += `<p>Q${key[1]}: ❌ Wrong. Correct answer is (${answers[key]}). ${explanations[key]}</p>`;
+          }
+        } else {
+          resultHTML += `<p>Q${key[1]}: ❌ Not answered.</p>`;
+        }
+      }
+
+      document.getElementById("result").innerHTML = `<h3>You scored ${score}/10</h3>` + resultHTML;
+    }
+  </script>
+</body>
+</html>
